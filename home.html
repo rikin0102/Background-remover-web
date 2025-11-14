@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Remove Background</title>
+
+    <style>
+        body {
+            background: #040406;
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding-top: 40px;
+            color: #e6e6e6;
+        }
+
+        .header-box {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            padding: 18px;
+            text-align: center;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #e5881e, #e5881e);
+            box-shadow: 0px 0px 25px #e5881e88;
+        }
+
+        .main-card {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #1a1a1a;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 20px rgba(0, 85, 255, 0.25);
+        }
+
+        .image-box {
+            background: rgba(0, 0, 0, 0.55);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #0c0c0c;
+            box-shadow: 0px 0px 25px rgba(0, 95, 255, 0.25);
+        }
+
+        img {
+            max-height: 360px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px #000;
+        }
+
+        .btn-custom {
+            background: #e5881eff;
+            border: none;
+            padding: 12px 26px;
+            font-size: 18px;
+            border-radius: 12px;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .btn-custom:hover {
+            background: #e5881eff;
+            box-shadow: 0px 0px 15px #e5881eff;
+        }
+
+        .btn-download {
+            background: transparent;
+            border: 2px solid #e5881eff;
+            padding: 10px 24px;
+            font-size: 17px;
+            border-radius: 12px;
+            color: #e5881eff;
+            transition: 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-download:hover {
+            background: #e5881eff;
+            color: white;
+            box-shadow: 0px 0px 15px #e5881eff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-box">
+        <h1 class="fw-bold">Remove Background</h1>
+        <p style="margin-top: -5px; opacity: 0.85;">Upload your image & erase background instantly</p>
+        <p style="margin-top: -10px; font-size: 14px; opacity: 0.75;">Rikin Patel</p>
+    </div>
+
+    <div class="main-card text-center">
+        <form action="/remback" method="POST" enctype="multipart/form-data">
+            <input type="file" id="file" name="file" class="form-control mb-3" style="border-radius: 10px;">
+            <button type="submit" class="btn-custom">Upload & Remove Background</button>
+        </form>
+    </div>
+
+    {% if rembg_img_name %}
+    <div class="container text-center mt-4">
+
+        <div class="row justify-content-center">
+
+            <!-- ORIGINAL IMAGE -->
+            <div class="col-md-5 image-box">
+                <h4 class="mb-3">Original Image</h4>
+                <img src="../static/uploads/{{ org_img_name }}">
+            </div>
+
+            <!-- REMOVED BG IMAGE + DOWNLOAD BUTTON -->
+            <div class="col-md-5 image-box">
+                <h4 class="mb-3">Without Background</h4>
+
+                <img src="../static/uploads/{{ rembg_img_name }}">
+
+                <br>
+
+                <!-- Download Button -->
+                <a href="../static/uploads/{{ rembg_img_name }}" download>
+                    <button class="btn-download">⬇ Download Image</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+
+</html>
